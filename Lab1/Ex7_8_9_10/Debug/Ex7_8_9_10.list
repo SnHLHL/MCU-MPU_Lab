@@ -174,11 +174,11 @@ int main(void)
   int sec;
   int min;
   int hour;
-  sec = 3;
- 8000204:	2303      	movs	r3, #3
+  sec = 0;
+ 8000204:	2300      	movs	r3, #0
  8000206:	617b      	str	r3, [r7, #20]
-  min = 30;
- 8000208:	231e      	movs	r3, #30
+  min = 34;
+ 8000208:	2322      	movs	r3, #34	; 0x22
  800020a:	613b      	str	r3, [r7, #16]
   hour = 9;
  800020c:	2309      	movs	r3, #9
@@ -208,303 +208,305 @@ int main(void)
  800022c:	1d3b      	adds	r3, r7, #4
  800022e:	469c      	mov	ip, r3
  8000230:	f7ff ff8c 	bl	800014c <clearAllClock.5428>
-	  sec++;
- 8000234:	697b      	ldr	r3, [r7, #20]
- 8000236:	3301      	adds	r3, #1
- 8000238:	617b      	str	r3, [r7, #20]
-	  if (sec > 0 && sec <= 5) setNumberOnClock(0);
- 800023a:	697b      	ldr	r3, [r7, #20]
- 800023c:	2b00      	cmp	r3, #0
- 800023e:	dd08      	ble.n	8000252 <main+0x66>
- 8000240:	697b      	ldr	r3, [r7, #20]
- 8000242:	2b05      	cmp	r3, #5
- 8000244:	dc05      	bgt.n	8000252 <main+0x66>
- 8000246:	1d3b      	adds	r3, r7, #4
- 8000248:	469c      	mov	ip, r3
- 800024a:	2000      	movs	r0, #0
- 800024c:	f000 f932 	bl	80004b4 <setNumberOnClock.5431>
- 8000250:	e082      	b.n	8000358 <main+0x16c>
-	  else if (sec > 5 && sec <= 10) setNumberOnClock(1);
- 8000252:	697b      	ldr	r3, [r7, #20]
- 8000254:	2b05      	cmp	r3, #5
- 8000256:	dd08      	ble.n	800026a <main+0x7e>
- 8000258:	697b      	ldr	r3, [r7, #20]
- 800025a:	2b0a      	cmp	r3, #10
- 800025c:	dc05      	bgt.n	800026a <main+0x7e>
- 800025e:	1d3b      	adds	r3, r7, #4
- 8000260:	469c      	mov	ip, r3
- 8000262:	2001      	movs	r0, #1
- 8000264:	f000 f926 	bl	80004b4 <setNumberOnClock.5431>
- 8000268:	e076      	b.n	8000358 <main+0x16c>
-	  else if (sec > 10 && sec <= 15) setNumberOnClock(2);
- 800026a:	697b      	ldr	r3, [r7, #20]
- 800026c:	2b0a      	cmp	r3, #10
- 800026e:	dd08      	ble.n	8000282 <main+0x96>
- 8000270:	697b      	ldr	r3, [r7, #20]
- 8000272:	2b0f      	cmp	r3, #15
- 8000274:	dc05      	bgt.n	8000282 <main+0x96>
- 8000276:	1d3b      	adds	r3, r7, #4
- 8000278:	469c      	mov	ip, r3
- 800027a:	2002      	movs	r0, #2
- 800027c:	f000 f91a 	bl	80004b4 <setNumberOnClock.5431>
- 8000280:	e06a      	b.n	8000358 <main+0x16c>
-	  else if (sec > 15 && sec <= 20) setNumberOnClock(3);
- 8000282:	697b      	ldr	r3, [r7, #20]
- 8000284:	2b0f      	cmp	r3, #15
- 8000286:	dd08      	ble.n	800029a <main+0xae>
- 8000288:	697b      	ldr	r3, [r7, #20]
- 800028a:	2b14      	cmp	r3, #20
- 800028c:	dc05      	bgt.n	800029a <main+0xae>
- 800028e:	1d3b      	adds	r3, r7, #4
- 8000290:	469c      	mov	ip, r3
- 8000292:	2003      	movs	r0, #3
- 8000294:	f000 f90e 	bl	80004b4 <setNumberOnClock.5431>
- 8000298:	e05e      	b.n	8000358 <main+0x16c>
-	  else if (sec > 20 && sec <= 25) setNumberOnClock(4);
- 800029a:	697b      	ldr	r3, [r7, #20]
- 800029c:	2b14      	cmp	r3, #20
- 800029e:	dd08      	ble.n	80002b2 <main+0xc6>
- 80002a0:	697b      	ldr	r3, [r7, #20]
- 80002a2:	2b19      	cmp	r3, #25
- 80002a4:	dc05      	bgt.n	80002b2 <main+0xc6>
- 80002a6:	1d3b      	adds	r3, r7, #4
- 80002a8:	469c      	mov	ip, r3
- 80002aa:	2004      	movs	r0, #4
- 80002ac:	f000 f902 	bl	80004b4 <setNumberOnClock.5431>
- 80002b0:	e052      	b.n	8000358 <main+0x16c>
-	  else if (sec > 25 && sec <= 30) setNumberOnClock(5);
- 80002b2:	697b      	ldr	r3, [r7, #20]
- 80002b4:	2b19      	cmp	r3, #25
- 80002b6:	dd08      	ble.n	80002ca <main+0xde>
- 80002b8:	697b      	ldr	r3, [r7, #20]
- 80002ba:	2b1e      	cmp	r3, #30
- 80002bc:	dc05      	bgt.n	80002ca <main+0xde>
- 80002be:	1d3b      	adds	r3, r7, #4
- 80002c0:	469c      	mov	ip, r3
- 80002c2:	2005      	movs	r0, #5
- 80002c4:	f000 f8f6 	bl	80004b4 <setNumberOnClock.5431>
- 80002c8:	e046      	b.n	8000358 <main+0x16c>
-	  else if (sec > 30 && sec <= 35) setNumberOnClock(6);
- 80002ca:	697b      	ldr	r3, [r7, #20]
- 80002cc:	2b1e      	cmp	r3, #30
- 80002ce:	dd08      	ble.n	80002e2 <main+0xf6>
- 80002d0:	697b      	ldr	r3, [r7, #20]
- 80002d2:	2b23      	cmp	r3, #35	; 0x23
- 80002d4:	dc05      	bgt.n	80002e2 <main+0xf6>
- 80002d6:	1d3b      	adds	r3, r7, #4
- 80002d8:	469c      	mov	ip, r3
- 80002da:	2006      	movs	r0, #6
- 80002dc:	f000 f8ea 	bl	80004b4 <setNumberOnClock.5431>
- 80002e0:	e03a      	b.n	8000358 <main+0x16c>
-	  else if (sec > 35 && sec <= 40) setNumberOnClock(7);
- 80002e2:	697b      	ldr	r3, [r7, #20]
- 80002e4:	2b23      	cmp	r3, #35	; 0x23
- 80002e6:	dd08      	ble.n	80002fa <main+0x10e>
- 80002e8:	697b      	ldr	r3, [r7, #20]
- 80002ea:	2b28      	cmp	r3, #40	; 0x28
- 80002ec:	dc05      	bgt.n	80002fa <main+0x10e>
- 80002ee:	1d3b      	adds	r3, r7, #4
- 80002f0:	469c      	mov	ip, r3
- 80002f2:	2007      	movs	r0, #7
- 80002f4:	f000 f8de 	bl	80004b4 <setNumberOnClock.5431>
- 80002f8:	e02e      	b.n	8000358 <main+0x16c>
-	  else if (sec > 40 && sec <= 45) setNumberOnClock(8);
- 80002fa:	697b      	ldr	r3, [r7, #20]
- 80002fc:	2b28      	cmp	r3, #40	; 0x28
- 80002fe:	dd08      	ble.n	8000312 <main+0x126>
- 8000300:	697b      	ldr	r3, [r7, #20]
- 8000302:	2b2d      	cmp	r3, #45	; 0x2d
- 8000304:	dc05      	bgt.n	8000312 <main+0x126>
- 8000306:	1d3b      	adds	r3, r7, #4
- 8000308:	469c      	mov	ip, r3
- 800030a:	2008      	movs	r0, #8
- 800030c:	f000 f8d2 	bl	80004b4 <setNumberOnClock.5431>
- 8000310:	e022      	b.n	8000358 <main+0x16c>
-	  else if (sec > 45 && sec <= 50) setNumberOnClock(9);
- 8000312:	697b      	ldr	r3, [r7, #20]
- 8000314:	2b2d      	cmp	r3, #45	; 0x2d
- 8000316:	dd08      	ble.n	800032a <main+0x13e>
- 8000318:	697b      	ldr	r3, [r7, #20]
- 800031a:	2b32      	cmp	r3, #50	; 0x32
- 800031c:	dc05      	bgt.n	800032a <main+0x13e>
- 800031e:	1d3b      	adds	r3, r7, #4
- 8000320:	469c      	mov	ip, r3
- 8000322:	2009      	movs	r0, #9
- 8000324:	f000 f8c6 	bl	80004b4 <setNumberOnClock.5431>
- 8000328:	e016      	b.n	8000358 <main+0x16c>
-	  else if (sec > 50 && sec <= 55) setNumberOnClock(10);
- 800032a:	697b      	ldr	r3, [r7, #20]
- 800032c:	2b32      	cmp	r3, #50	; 0x32
- 800032e:	dd08      	ble.n	8000342 <main+0x156>
- 8000330:	697b      	ldr	r3, [r7, #20]
- 8000332:	2b37      	cmp	r3, #55	; 0x37
- 8000334:	dc05      	bgt.n	8000342 <main+0x156>
- 8000336:	1d3b      	adds	r3, r7, #4
- 8000338:	469c      	mov	ip, r3
- 800033a:	200a      	movs	r0, #10
- 800033c:	f000 f8ba 	bl	80004b4 <setNumberOnClock.5431>
- 8000340:	e00a      	b.n	8000358 <main+0x16c>
-	  else if (sec > 55 && sec <= 60) setNumberOnClock(11);
- 8000342:	697b      	ldr	r3, [r7, #20]
- 8000344:	2b37      	cmp	r3, #55	; 0x37
- 8000346:	dd07      	ble.n	8000358 <main+0x16c>
- 8000348:	697b      	ldr	r3, [r7, #20]
- 800034a:	2b3c      	cmp	r3, #60	; 0x3c
- 800034c:	dc04      	bgt.n	8000358 <main+0x16c>
- 800034e:	1d3b      	adds	r3, r7, #4
- 8000350:	469c      	mov	ip, r3
- 8000352:	200b      	movs	r0, #11
- 8000354:	f000 f8ae 	bl	80004b4 <setNumberOnClock.5431>
 
-	  if (min > 0 && min <= 5) setNumberOnClock(0);
+	  if (sec >= 0 && sec < 5) setNumberOnClock(0);
+ 8000234:	697b      	ldr	r3, [r7, #20]
+ 8000236:	2b00      	cmp	r3, #0
+ 8000238:	db08      	blt.n	800024c <main+0x60>
+ 800023a:	697b      	ldr	r3, [r7, #20]
+ 800023c:	2b04      	cmp	r3, #4
+ 800023e:	dc05      	bgt.n	800024c <main+0x60>
+ 8000240:	1d3b      	adds	r3, r7, #4
+ 8000242:	469c      	mov	ip, r3
+ 8000244:	2000      	movs	r0, #0
+ 8000246:	f000 f935 	bl	80004b4 <setNumberOnClock.5431>
+ 800024a:	e082      	b.n	8000352 <main+0x166>
+	  else if (sec >= 5 && sec < 10) setNumberOnClock(1);
+ 800024c:	697b      	ldr	r3, [r7, #20]
+ 800024e:	2b04      	cmp	r3, #4
+ 8000250:	dd08      	ble.n	8000264 <main+0x78>
+ 8000252:	697b      	ldr	r3, [r7, #20]
+ 8000254:	2b09      	cmp	r3, #9
+ 8000256:	dc05      	bgt.n	8000264 <main+0x78>
+ 8000258:	1d3b      	adds	r3, r7, #4
+ 800025a:	469c      	mov	ip, r3
+ 800025c:	2001      	movs	r0, #1
+ 800025e:	f000 f929 	bl	80004b4 <setNumberOnClock.5431>
+ 8000262:	e076      	b.n	8000352 <main+0x166>
+	  else if (sec >= 10 && sec < 15) setNumberOnClock(2);
+ 8000264:	697b      	ldr	r3, [r7, #20]
+ 8000266:	2b09      	cmp	r3, #9
+ 8000268:	dd08      	ble.n	800027c <main+0x90>
+ 800026a:	697b      	ldr	r3, [r7, #20]
+ 800026c:	2b0e      	cmp	r3, #14
+ 800026e:	dc05      	bgt.n	800027c <main+0x90>
+ 8000270:	1d3b      	adds	r3, r7, #4
+ 8000272:	469c      	mov	ip, r3
+ 8000274:	2002      	movs	r0, #2
+ 8000276:	f000 f91d 	bl	80004b4 <setNumberOnClock.5431>
+ 800027a:	e06a      	b.n	8000352 <main+0x166>
+	  else if (sec >= 15 && sec < 20) setNumberOnClock(3);
+ 800027c:	697b      	ldr	r3, [r7, #20]
+ 800027e:	2b0e      	cmp	r3, #14
+ 8000280:	dd08      	ble.n	8000294 <main+0xa8>
+ 8000282:	697b      	ldr	r3, [r7, #20]
+ 8000284:	2b13      	cmp	r3, #19
+ 8000286:	dc05      	bgt.n	8000294 <main+0xa8>
+ 8000288:	1d3b      	adds	r3, r7, #4
+ 800028a:	469c      	mov	ip, r3
+ 800028c:	2003      	movs	r0, #3
+ 800028e:	f000 f911 	bl	80004b4 <setNumberOnClock.5431>
+ 8000292:	e05e      	b.n	8000352 <main+0x166>
+	  else if (sec >= 20 && sec < 25) setNumberOnClock(4);
+ 8000294:	697b      	ldr	r3, [r7, #20]
+ 8000296:	2b13      	cmp	r3, #19
+ 8000298:	dd08      	ble.n	80002ac <main+0xc0>
+ 800029a:	697b      	ldr	r3, [r7, #20]
+ 800029c:	2b18      	cmp	r3, #24
+ 800029e:	dc05      	bgt.n	80002ac <main+0xc0>
+ 80002a0:	1d3b      	adds	r3, r7, #4
+ 80002a2:	469c      	mov	ip, r3
+ 80002a4:	2004      	movs	r0, #4
+ 80002a6:	f000 f905 	bl	80004b4 <setNumberOnClock.5431>
+ 80002aa:	e052      	b.n	8000352 <main+0x166>
+	  else if (sec >= 25 && sec < 30) setNumberOnClock(5);
+ 80002ac:	697b      	ldr	r3, [r7, #20]
+ 80002ae:	2b18      	cmp	r3, #24
+ 80002b0:	dd08      	ble.n	80002c4 <main+0xd8>
+ 80002b2:	697b      	ldr	r3, [r7, #20]
+ 80002b4:	2b1d      	cmp	r3, #29
+ 80002b6:	dc05      	bgt.n	80002c4 <main+0xd8>
+ 80002b8:	1d3b      	adds	r3, r7, #4
+ 80002ba:	469c      	mov	ip, r3
+ 80002bc:	2005      	movs	r0, #5
+ 80002be:	f000 f8f9 	bl	80004b4 <setNumberOnClock.5431>
+ 80002c2:	e046      	b.n	8000352 <main+0x166>
+	  else if (sec >= 30 && sec < 35) setNumberOnClock(6);
+ 80002c4:	697b      	ldr	r3, [r7, #20]
+ 80002c6:	2b1d      	cmp	r3, #29
+ 80002c8:	dd08      	ble.n	80002dc <main+0xf0>
+ 80002ca:	697b      	ldr	r3, [r7, #20]
+ 80002cc:	2b22      	cmp	r3, #34	; 0x22
+ 80002ce:	dc05      	bgt.n	80002dc <main+0xf0>
+ 80002d0:	1d3b      	adds	r3, r7, #4
+ 80002d2:	469c      	mov	ip, r3
+ 80002d4:	2006      	movs	r0, #6
+ 80002d6:	f000 f8ed 	bl	80004b4 <setNumberOnClock.5431>
+ 80002da:	e03a      	b.n	8000352 <main+0x166>
+	  else if (sec >= 35 && sec < 40) setNumberOnClock(7);
+ 80002dc:	697b      	ldr	r3, [r7, #20]
+ 80002de:	2b22      	cmp	r3, #34	; 0x22
+ 80002e0:	dd08      	ble.n	80002f4 <main+0x108>
+ 80002e2:	697b      	ldr	r3, [r7, #20]
+ 80002e4:	2b27      	cmp	r3, #39	; 0x27
+ 80002e6:	dc05      	bgt.n	80002f4 <main+0x108>
+ 80002e8:	1d3b      	adds	r3, r7, #4
+ 80002ea:	469c      	mov	ip, r3
+ 80002ec:	2007      	movs	r0, #7
+ 80002ee:	f000 f8e1 	bl	80004b4 <setNumberOnClock.5431>
+ 80002f2:	e02e      	b.n	8000352 <main+0x166>
+	  else if (sec >= 40 && sec < 45) setNumberOnClock(8);
+ 80002f4:	697b      	ldr	r3, [r7, #20]
+ 80002f6:	2b27      	cmp	r3, #39	; 0x27
+ 80002f8:	dd08      	ble.n	800030c <main+0x120>
+ 80002fa:	697b      	ldr	r3, [r7, #20]
+ 80002fc:	2b2c      	cmp	r3, #44	; 0x2c
+ 80002fe:	dc05      	bgt.n	800030c <main+0x120>
+ 8000300:	1d3b      	adds	r3, r7, #4
+ 8000302:	469c      	mov	ip, r3
+ 8000304:	2008      	movs	r0, #8
+ 8000306:	f000 f8d5 	bl	80004b4 <setNumberOnClock.5431>
+ 800030a:	e022      	b.n	8000352 <main+0x166>
+	  else if (sec >= 45 && sec < 50) setNumberOnClock(9);
+ 800030c:	697b      	ldr	r3, [r7, #20]
+ 800030e:	2b2c      	cmp	r3, #44	; 0x2c
+ 8000310:	dd08      	ble.n	8000324 <main+0x138>
+ 8000312:	697b      	ldr	r3, [r7, #20]
+ 8000314:	2b31      	cmp	r3, #49	; 0x31
+ 8000316:	dc05      	bgt.n	8000324 <main+0x138>
+ 8000318:	1d3b      	adds	r3, r7, #4
+ 800031a:	469c      	mov	ip, r3
+ 800031c:	2009      	movs	r0, #9
+ 800031e:	f000 f8c9 	bl	80004b4 <setNumberOnClock.5431>
+ 8000322:	e016      	b.n	8000352 <main+0x166>
+	  else if (sec >= 50 && sec < 55) setNumberOnClock(10);
+ 8000324:	697b      	ldr	r3, [r7, #20]
+ 8000326:	2b31      	cmp	r3, #49	; 0x31
+ 8000328:	dd08      	ble.n	800033c <main+0x150>
+ 800032a:	697b      	ldr	r3, [r7, #20]
+ 800032c:	2b36      	cmp	r3, #54	; 0x36
+ 800032e:	dc05      	bgt.n	800033c <main+0x150>
+ 8000330:	1d3b      	adds	r3, r7, #4
+ 8000332:	469c      	mov	ip, r3
+ 8000334:	200a      	movs	r0, #10
+ 8000336:	f000 f8bd 	bl	80004b4 <setNumberOnClock.5431>
+ 800033a:	e00a      	b.n	8000352 <main+0x166>
+	  else if (sec >= 55 && sec < 60) setNumberOnClock(11);
+ 800033c:	697b      	ldr	r3, [r7, #20]
+ 800033e:	2b36      	cmp	r3, #54	; 0x36
+ 8000340:	dd07      	ble.n	8000352 <main+0x166>
+ 8000342:	697b      	ldr	r3, [r7, #20]
+ 8000344:	2b3b      	cmp	r3, #59	; 0x3b
+ 8000346:	dc04      	bgt.n	8000352 <main+0x166>
+ 8000348:	1d3b      	adds	r3, r7, #4
+ 800034a:	469c      	mov	ip, r3
+ 800034c:	200b      	movs	r0, #11
+ 800034e:	f000 f8b1 	bl	80004b4 <setNumberOnClock.5431>
+
+	  if (min >= 0 && min < 5) setNumberOnClock(0);
+ 8000352:	693b      	ldr	r3, [r7, #16]
+ 8000354:	2b00      	cmp	r3, #0
+ 8000356:	db08      	blt.n	800036a <main+0x17e>
  8000358:	693b      	ldr	r3, [r7, #16]
- 800035a:	2b00      	cmp	r3, #0
- 800035c:	dd08      	ble.n	8000370 <main+0x184>
- 800035e:	693b      	ldr	r3, [r7, #16]
- 8000360:	2b05      	cmp	r3, #5
- 8000362:	dc05      	bgt.n	8000370 <main+0x184>
- 8000364:	1d3b      	adds	r3, r7, #4
- 8000366:	469c      	mov	ip, r3
- 8000368:	2000      	movs	r0, #0
- 800036a:	f000 f8a3 	bl	80004b4 <setNumberOnClock.5431>
- 800036e:	e082      	b.n	8000476 <main+0x28a>
-	  else if (min > 5 && min <= 10) setNumberOnClock(1);
+ 800035a:	2b04      	cmp	r3, #4
+ 800035c:	dc05      	bgt.n	800036a <main+0x17e>
+ 800035e:	1d3b      	adds	r3, r7, #4
+ 8000360:	469c      	mov	ip, r3
+ 8000362:	2000      	movs	r0, #0
+ 8000364:	f000 f8a6 	bl	80004b4 <setNumberOnClock.5431>
+ 8000368:	e082      	b.n	8000470 <main+0x284>
+	  else if (min >= 5 && min < 10) setNumberOnClock(1);
+ 800036a:	693b      	ldr	r3, [r7, #16]
+ 800036c:	2b04      	cmp	r3, #4
+ 800036e:	dd08      	ble.n	8000382 <main+0x196>
  8000370:	693b      	ldr	r3, [r7, #16]
- 8000372:	2b05      	cmp	r3, #5
- 8000374:	dd08      	ble.n	8000388 <main+0x19c>
- 8000376:	693b      	ldr	r3, [r7, #16]
- 8000378:	2b0a      	cmp	r3, #10
- 800037a:	dc05      	bgt.n	8000388 <main+0x19c>
- 800037c:	1d3b      	adds	r3, r7, #4
- 800037e:	469c      	mov	ip, r3
- 8000380:	2001      	movs	r0, #1
- 8000382:	f000 f897 	bl	80004b4 <setNumberOnClock.5431>
- 8000386:	e076      	b.n	8000476 <main+0x28a>
-	  else if (min > 10 && min <= 15) setNumberOnClock(2);
+ 8000372:	2b09      	cmp	r3, #9
+ 8000374:	dc05      	bgt.n	8000382 <main+0x196>
+ 8000376:	1d3b      	adds	r3, r7, #4
+ 8000378:	469c      	mov	ip, r3
+ 800037a:	2001      	movs	r0, #1
+ 800037c:	f000 f89a 	bl	80004b4 <setNumberOnClock.5431>
+ 8000380:	e076      	b.n	8000470 <main+0x284>
+	  else if (min >= 10 && min < 15) setNumberOnClock(2);
+ 8000382:	693b      	ldr	r3, [r7, #16]
+ 8000384:	2b09      	cmp	r3, #9
+ 8000386:	dd08      	ble.n	800039a <main+0x1ae>
  8000388:	693b      	ldr	r3, [r7, #16]
- 800038a:	2b0a      	cmp	r3, #10
- 800038c:	dd08      	ble.n	80003a0 <main+0x1b4>
- 800038e:	693b      	ldr	r3, [r7, #16]
- 8000390:	2b0f      	cmp	r3, #15
- 8000392:	dc05      	bgt.n	80003a0 <main+0x1b4>
- 8000394:	1d3b      	adds	r3, r7, #4
- 8000396:	469c      	mov	ip, r3
- 8000398:	2002      	movs	r0, #2
- 800039a:	f000 f88b 	bl	80004b4 <setNumberOnClock.5431>
- 800039e:	e06a      	b.n	8000476 <main+0x28a>
-	  else if (min > 15 && min <= 20) setNumberOnClock(3);
+ 800038a:	2b0e      	cmp	r3, #14
+ 800038c:	dc05      	bgt.n	800039a <main+0x1ae>
+ 800038e:	1d3b      	adds	r3, r7, #4
+ 8000390:	469c      	mov	ip, r3
+ 8000392:	2002      	movs	r0, #2
+ 8000394:	f000 f88e 	bl	80004b4 <setNumberOnClock.5431>
+ 8000398:	e06a      	b.n	8000470 <main+0x284>
+	  else if (min >= 15 && min < 20) setNumberOnClock(3);
+ 800039a:	693b      	ldr	r3, [r7, #16]
+ 800039c:	2b0e      	cmp	r3, #14
+ 800039e:	dd08      	ble.n	80003b2 <main+0x1c6>
  80003a0:	693b      	ldr	r3, [r7, #16]
- 80003a2:	2b0f      	cmp	r3, #15
- 80003a4:	dd08      	ble.n	80003b8 <main+0x1cc>
- 80003a6:	693b      	ldr	r3, [r7, #16]
- 80003a8:	2b14      	cmp	r3, #20
- 80003aa:	dc05      	bgt.n	80003b8 <main+0x1cc>
- 80003ac:	1d3b      	adds	r3, r7, #4
- 80003ae:	469c      	mov	ip, r3
- 80003b0:	2003      	movs	r0, #3
- 80003b2:	f000 f87f 	bl	80004b4 <setNumberOnClock.5431>
- 80003b6:	e05e      	b.n	8000476 <main+0x28a>
-	  else if (min > 20 && min <= 25) setNumberOnClock(4);
+ 80003a2:	2b13      	cmp	r3, #19
+ 80003a4:	dc05      	bgt.n	80003b2 <main+0x1c6>
+ 80003a6:	1d3b      	adds	r3, r7, #4
+ 80003a8:	469c      	mov	ip, r3
+ 80003aa:	2003      	movs	r0, #3
+ 80003ac:	f000 f882 	bl	80004b4 <setNumberOnClock.5431>
+ 80003b0:	e05e      	b.n	8000470 <main+0x284>
+	  else if (min >= 20 && min < 25) setNumberOnClock(4);
+ 80003b2:	693b      	ldr	r3, [r7, #16]
+ 80003b4:	2b13      	cmp	r3, #19
+ 80003b6:	dd08      	ble.n	80003ca <main+0x1de>
  80003b8:	693b      	ldr	r3, [r7, #16]
- 80003ba:	2b14      	cmp	r3, #20
- 80003bc:	dd08      	ble.n	80003d0 <main+0x1e4>
- 80003be:	693b      	ldr	r3, [r7, #16]
- 80003c0:	2b19      	cmp	r3, #25
- 80003c2:	dc05      	bgt.n	80003d0 <main+0x1e4>
- 80003c4:	1d3b      	adds	r3, r7, #4
- 80003c6:	469c      	mov	ip, r3
- 80003c8:	2004      	movs	r0, #4
- 80003ca:	f000 f873 	bl	80004b4 <setNumberOnClock.5431>
- 80003ce:	e052      	b.n	8000476 <main+0x28a>
-	  else if (min > 25 && min <= 30) setNumberOnClock(5);
+ 80003ba:	2b18      	cmp	r3, #24
+ 80003bc:	dc05      	bgt.n	80003ca <main+0x1de>
+ 80003be:	1d3b      	adds	r3, r7, #4
+ 80003c0:	469c      	mov	ip, r3
+ 80003c2:	2004      	movs	r0, #4
+ 80003c4:	f000 f876 	bl	80004b4 <setNumberOnClock.5431>
+ 80003c8:	e052      	b.n	8000470 <main+0x284>
+	  else if (min >= 25 && min < 30) setNumberOnClock(5);
+ 80003ca:	693b      	ldr	r3, [r7, #16]
+ 80003cc:	2b18      	cmp	r3, #24
+ 80003ce:	dd08      	ble.n	80003e2 <main+0x1f6>
  80003d0:	693b      	ldr	r3, [r7, #16]
- 80003d2:	2b19      	cmp	r3, #25
- 80003d4:	dd08      	ble.n	80003e8 <main+0x1fc>
- 80003d6:	693b      	ldr	r3, [r7, #16]
- 80003d8:	2b1e      	cmp	r3, #30
- 80003da:	dc05      	bgt.n	80003e8 <main+0x1fc>
- 80003dc:	1d3b      	adds	r3, r7, #4
- 80003de:	469c      	mov	ip, r3
- 80003e0:	2005      	movs	r0, #5
- 80003e2:	f000 f867 	bl	80004b4 <setNumberOnClock.5431>
- 80003e6:	e046      	b.n	8000476 <main+0x28a>
-	  else if (min > 30 && min <= 35) setNumberOnClock(6);
+ 80003d2:	2b1d      	cmp	r3, #29
+ 80003d4:	dc05      	bgt.n	80003e2 <main+0x1f6>
+ 80003d6:	1d3b      	adds	r3, r7, #4
+ 80003d8:	469c      	mov	ip, r3
+ 80003da:	2005      	movs	r0, #5
+ 80003dc:	f000 f86a 	bl	80004b4 <setNumberOnClock.5431>
+ 80003e0:	e046      	b.n	8000470 <main+0x284>
+	  else if (min >= 30 && min < 35) setNumberOnClock(6);
+ 80003e2:	693b      	ldr	r3, [r7, #16]
+ 80003e4:	2b1d      	cmp	r3, #29
+ 80003e6:	dd08      	ble.n	80003fa <main+0x20e>
  80003e8:	693b      	ldr	r3, [r7, #16]
- 80003ea:	2b1e      	cmp	r3, #30
- 80003ec:	dd08      	ble.n	8000400 <main+0x214>
- 80003ee:	693b      	ldr	r3, [r7, #16]
- 80003f0:	2b23      	cmp	r3, #35	; 0x23
- 80003f2:	dc05      	bgt.n	8000400 <main+0x214>
- 80003f4:	1d3b      	adds	r3, r7, #4
- 80003f6:	469c      	mov	ip, r3
- 80003f8:	2006      	movs	r0, #6
- 80003fa:	f000 f85b 	bl	80004b4 <setNumberOnClock.5431>
- 80003fe:	e03a      	b.n	8000476 <main+0x28a>
-	  else if (min > 35 && min <= 40) setNumberOnClock(7);
+ 80003ea:	2b22      	cmp	r3, #34	; 0x22
+ 80003ec:	dc05      	bgt.n	80003fa <main+0x20e>
+ 80003ee:	1d3b      	adds	r3, r7, #4
+ 80003f0:	469c      	mov	ip, r3
+ 80003f2:	2006      	movs	r0, #6
+ 80003f4:	f000 f85e 	bl	80004b4 <setNumberOnClock.5431>
+ 80003f8:	e03a      	b.n	8000470 <main+0x284>
+	  else if (min >= 35 && min < 40) setNumberOnClock(7);
+ 80003fa:	693b      	ldr	r3, [r7, #16]
+ 80003fc:	2b22      	cmp	r3, #34	; 0x22
+ 80003fe:	dd08      	ble.n	8000412 <main+0x226>
  8000400:	693b      	ldr	r3, [r7, #16]
- 8000402:	2b23      	cmp	r3, #35	; 0x23
- 8000404:	dd08      	ble.n	8000418 <main+0x22c>
- 8000406:	693b      	ldr	r3, [r7, #16]
- 8000408:	2b28      	cmp	r3, #40	; 0x28
- 800040a:	dc05      	bgt.n	8000418 <main+0x22c>
- 800040c:	1d3b      	adds	r3, r7, #4
- 800040e:	469c      	mov	ip, r3
- 8000410:	2007      	movs	r0, #7
- 8000412:	f000 f84f 	bl	80004b4 <setNumberOnClock.5431>
- 8000416:	e02e      	b.n	8000476 <main+0x28a>
-	  else if (min > 40 && min <= 45) setNumberOnClock(8);
+ 8000402:	2b27      	cmp	r3, #39	; 0x27
+ 8000404:	dc05      	bgt.n	8000412 <main+0x226>
+ 8000406:	1d3b      	adds	r3, r7, #4
+ 8000408:	469c      	mov	ip, r3
+ 800040a:	2007      	movs	r0, #7
+ 800040c:	f000 f852 	bl	80004b4 <setNumberOnClock.5431>
+ 8000410:	e02e      	b.n	8000470 <main+0x284>
+	  else if (min >= 40 && min < 45) setNumberOnClock(8);
+ 8000412:	693b      	ldr	r3, [r7, #16]
+ 8000414:	2b27      	cmp	r3, #39	; 0x27
+ 8000416:	dd08      	ble.n	800042a <main+0x23e>
  8000418:	693b      	ldr	r3, [r7, #16]
- 800041a:	2b28      	cmp	r3, #40	; 0x28
- 800041c:	dd08      	ble.n	8000430 <main+0x244>
- 800041e:	693b      	ldr	r3, [r7, #16]
- 8000420:	2b2d      	cmp	r3, #45	; 0x2d
- 8000422:	dc05      	bgt.n	8000430 <main+0x244>
- 8000424:	1d3b      	adds	r3, r7, #4
- 8000426:	469c      	mov	ip, r3
- 8000428:	2008      	movs	r0, #8
- 800042a:	f000 f843 	bl	80004b4 <setNumberOnClock.5431>
- 800042e:	e022      	b.n	8000476 <main+0x28a>
-	  else if (min > 45 && min <= 50) setNumberOnClock(9);
+ 800041a:	2b2c      	cmp	r3, #44	; 0x2c
+ 800041c:	dc05      	bgt.n	800042a <main+0x23e>
+ 800041e:	1d3b      	adds	r3, r7, #4
+ 8000420:	469c      	mov	ip, r3
+ 8000422:	2008      	movs	r0, #8
+ 8000424:	f000 f846 	bl	80004b4 <setNumberOnClock.5431>
+ 8000428:	e022      	b.n	8000470 <main+0x284>
+	  else if (min >= 45 && min < 50) setNumberOnClock(9);
+ 800042a:	693b      	ldr	r3, [r7, #16]
+ 800042c:	2b2c      	cmp	r3, #44	; 0x2c
+ 800042e:	dd08      	ble.n	8000442 <main+0x256>
  8000430:	693b      	ldr	r3, [r7, #16]
- 8000432:	2b2d      	cmp	r3, #45	; 0x2d
- 8000434:	dd08      	ble.n	8000448 <main+0x25c>
- 8000436:	693b      	ldr	r3, [r7, #16]
- 8000438:	2b32      	cmp	r3, #50	; 0x32
- 800043a:	dc05      	bgt.n	8000448 <main+0x25c>
- 800043c:	1d3b      	adds	r3, r7, #4
- 800043e:	469c      	mov	ip, r3
- 8000440:	2009      	movs	r0, #9
- 8000442:	f000 f837 	bl	80004b4 <setNumberOnClock.5431>
- 8000446:	e016      	b.n	8000476 <main+0x28a>
-	  else if (min > 50 && min <= 55) setNumberOnClock(10);
+ 8000432:	2b31      	cmp	r3, #49	; 0x31
+ 8000434:	dc05      	bgt.n	8000442 <main+0x256>
+ 8000436:	1d3b      	adds	r3, r7, #4
+ 8000438:	469c      	mov	ip, r3
+ 800043a:	2009      	movs	r0, #9
+ 800043c:	f000 f83a 	bl	80004b4 <setNumberOnClock.5431>
+ 8000440:	e016      	b.n	8000470 <main+0x284>
+	  else if (min >= 50 && min < 55) setNumberOnClock(10);
+ 8000442:	693b      	ldr	r3, [r7, #16]
+ 8000444:	2b31      	cmp	r3, #49	; 0x31
+ 8000446:	dd08      	ble.n	800045a <main+0x26e>
  8000448:	693b      	ldr	r3, [r7, #16]
- 800044a:	2b32      	cmp	r3, #50	; 0x32
- 800044c:	dd08      	ble.n	8000460 <main+0x274>
- 800044e:	693b      	ldr	r3, [r7, #16]
- 8000450:	2b37      	cmp	r3, #55	; 0x37
- 8000452:	dc05      	bgt.n	8000460 <main+0x274>
- 8000454:	1d3b      	adds	r3, r7, #4
- 8000456:	469c      	mov	ip, r3
- 8000458:	200a      	movs	r0, #10
- 800045a:	f000 f82b 	bl	80004b4 <setNumberOnClock.5431>
- 800045e:	e00a      	b.n	8000476 <main+0x28a>
-	  else if (min > 55 && min <= 60) setNumberOnClock(11);
+ 800044a:	2b36      	cmp	r3, #54	; 0x36
+ 800044c:	dc05      	bgt.n	800045a <main+0x26e>
+ 800044e:	1d3b      	adds	r3, r7, #4
+ 8000450:	469c      	mov	ip, r3
+ 8000452:	200a      	movs	r0, #10
+ 8000454:	f000 f82e 	bl	80004b4 <setNumberOnClock.5431>
+ 8000458:	e00a      	b.n	8000470 <main+0x284>
+	  else if (min >= 55 && min < 60) setNumberOnClock(11);
+ 800045a:	693b      	ldr	r3, [r7, #16]
+ 800045c:	2b36      	cmp	r3, #54	; 0x36
+ 800045e:	dd07      	ble.n	8000470 <main+0x284>
  8000460:	693b      	ldr	r3, [r7, #16]
- 8000462:	2b37      	cmp	r3, #55	; 0x37
- 8000464:	dd07      	ble.n	8000476 <main+0x28a>
- 8000466:	693b      	ldr	r3, [r7, #16]
- 8000468:	2b3c      	cmp	r3, #60	; 0x3c
- 800046a:	dc04      	bgt.n	8000476 <main+0x28a>
- 800046c:	1d3b      	adds	r3, r7, #4
- 800046e:	469c      	mov	ip, r3
- 8000470:	200b      	movs	r0, #11
- 8000472:	f000 f81f 	bl	80004b4 <setNumberOnClock.5431>
+ 8000462:	2b3b      	cmp	r3, #59	; 0x3b
+ 8000464:	dc04      	bgt.n	8000470 <main+0x284>
+ 8000466:	1d3b      	adds	r3, r7, #4
+ 8000468:	469c      	mov	ip, r3
+ 800046a:	200b      	movs	r0, #11
+ 800046c:	f000 f822 	bl	80004b4 <setNumberOnClock.5431>
 
 	  setNumberOnClock(hour);
- 8000476:	1d3b      	adds	r3, r7, #4
- 8000478:	469c      	mov	ip, r3
- 800047a:	68f8      	ldr	r0, [r7, #12]
- 800047c:	f000 f81a 	bl	80004b4 <setNumberOnClock.5431>
+ 8000470:	1d3b      	adds	r3, r7, #4
+ 8000472:	469c      	mov	ip, r3
+ 8000474:	68f8      	ldr	r0, [r7, #12]
+ 8000476:	f000 f81d 	bl	80004b4 <setNumberOnClock.5431>
+
+	  sec++;
+ 800047a:	697b      	ldr	r3, [r7, #20]
+ 800047c:	3301      	adds	r3, #1
+ 800047e:	617b      	str	r3, [r7, #20]
 
 	  if (sec >= 60)
  8000480:	697b      	ldr	r3, [r7, #20]

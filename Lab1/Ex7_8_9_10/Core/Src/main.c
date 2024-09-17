@@ -212,8 +212,8 @@ int main(void)
   int sec;
   int min;
   int hour;
-  sec = 3;
-  min = 30;
+  sec = 0;
+  min = 34;
   hour = 9;
   int i;
   for (i = 1; i <= 12; i++)
@@ -223,34 +223,36 @@ int main(void)
   while (1)
   {
 	  clearAllClock();
-	  sec++;
-	  if (sec > 0 && sec <= 5) setNumberOnClock(0);
-	  else if (sec > 5 && sec <= 10) setNumberOnClock(1);
-	  else if (sec > 10 && sec <= 15) setNumberOnClock(2);
-	  else if (sec > 15 && sec <= 20) setNumberOnClock(3);
-	  else if (sec > 20 && sec <= 25) setNumberOnClock(4);
-	  else if (sec > 25 && sec <= 30) setNumberOnClock(5);
-	  else if (sec > 30 && sec <= 35) setNumberOnClock(6);
-	  else if (sec > 35 && sec <= 40) setNumberOnClock(7);
-	  else if (sec > 40 && sec <= 45) setNumberOnClock(8);
-	  else if (sec > 45 && sec <= 50) setNumberOnClock(9);
-	  else if (sec > 50 && sec <= 55) setNumberOnClock(10);
-	  else if (sec > 55 && sec <= 60) setNumberOnClock(11);
 
-	  if (min > 0 && min <= 5) setNumberOnClock(0);
-	  else if (min > 5 && min <= 10) setNumberOnClock(1);
-	  else if (min > 10 && min <= 15) setNumberOnClock(2);
-	  else if (min > 15 && min <= 20) setNumberOnClock(3);
-	  else if (min > 20 && min <= 25) setNumberOnClock(4);
-	  else if (min > 25 && min <= 30) setNumberOnClock(5);
-	  else if (min > 30 && min <= 35) setNumberOnClock(6);
-	  else if (min > 35 && min <= 40) setNumberOnClock(7);
-	  else if (min > 40 && min <= 45) setNumberOnClock(8);
-	  else if (min > 45 && min <= 50) setNumberOnClock(9);
-	  else if (min > 50 && min <= 55) setNumberOnClock(10);
-	  else if (min > 55 && min <= 60) setNumberOnClock(11);
+	  if (sec >= 0 && sec < 5) setNumberOnClock(0);
+	  else if (sec >= 5 && sec < 10) setNumberOnClock(1);
+	  else if (sec >= 10 && sec < 15) setNumberOnClock(2);
+	  else if (sec >= 15 && sec < 20) setNumberOnClock(3);
+	  else if (sec >= 20 && sec < 25) setNumberOnClock(4);
+	  else if (sec >= 25 && sec < 30) setNumberOnClock(5);
+	  else if (sec >= 30 && sec < 35) setNumberOnClock(6);
+	  else if (sec >= 35 && sec < 40) setNumberOnClock(7);
+	  else if (sec >= 40 && sec < 45) setNumberOnClock(8);
+	  else if (sec >= 45 && sec < 50) setNumberOnClock(9);
+	  else if (sec >= 50 && sec < 55) setNumberOnClock(10);
+	  else if (sec >= 55 && sec < 60) setNumberOnClock(11);
+
+	  if (min >= 0 && min < 5) setNumberOnClock(0);
+	  else if (min >= 5 && min < 10) setNumberOnClock(1);
+	  else if (min >= 10 && min < 15) setNumberOnClock(2);
+	  else if (min >= 15 && min < 20) setNumberOnClock(3);
+	  else if (min >= 20 && min < 25) setNumberOnClock(4);
+	  else if (min >= 25 && min < 30) setNumberOnClock(5);
+	  else if (min >= 30 && min < 35) setNumberOnClock(6);
+	  else if (min >= 35 && min < 40) setNumberOnClock(7);
+	  else if (min >= 40 && min < 45) setNumberOnClock(8);
+	  else if (min >= 45 && min < 50) setNumberOnClock(9);
+	  else if (min >= 50 && min < 55) setNumberOnClock(10);
+	  else if (min >= 55 && min < 60) setNumberOnClock(11);
 
 	  setNumberOnClock(hour);
+
+	  sec++;
 
 	  if (sec >= 60)
 	  {
