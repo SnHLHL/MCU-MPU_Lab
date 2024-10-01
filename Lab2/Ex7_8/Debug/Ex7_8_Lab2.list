@@ -326,11 +326,11 @@ int main(void)
  80002ac:	603b      	str	r3, [r7, #0]
   while (1)
   {
-	  if(timer0_counter <= 0)
+	  if(timer0_flag == 1)
  80002ae:	4b24      	ldr	r3, [pc, #144]	; (8000340 <main+0xd4>)
  80002b0:	681b      	ldr	r3, [r3, #0]
- 80002b2:	2b00      	cmp	r3, #0
- 80002b4:	dc07      	bgt.n	80002c6 <main+0x5a>
+ 80002b2:	2b01      	cmp	r3, #1
+ 80002b4:	d107      	bne.n	80002c6 <main+0x5a>
 	  {
 		  setTimer0(2000);
  80002b6:	f44f 60fa 	mov.w	r0, #2000	; 0x7d0
@@ -340,11 +340,11 @@ int main(void)
  80002c0:	4820      	ldr	r0, [pc, #128]	; (8000344 <main+0xd8>)
  80002c2:	f000 ff57 	bl	8001174 <HAL_GPIO_TogglePin>
 	  }
-	  if(timer1_counter <= 0)
+	  if(timer1_flag == 1)
  80002c6:	4b20      	ldr	r3, [pc, #128]	; (8000348 <main+0xdc>)
  80002c8:	681b      	ldr	r3, [r3, #0]
- 80002ca:	2b00      	cmp	r3, #0
- 80002cc:	dc23      	bgt.n	8000316 <main+0xaa>
+ 80002ca:	2b01      	cmp	r3, #1
+ 80002cc:	d123      	bne.n	8000316 <main+0xaa>
 	  {
 		  setTimer1(1000);
  80002ce:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
@@ -397,11 +397,11 @@ int main(void)
  8000310:	68f8      	ldr	r0, [r7, #12]
  8000312:	f000 fa89 	bl	8000828 <updateClockBuffer>
 	  }
-	  if(timer2_counter <= 0)
+	  if(timer2_flag == 1)
  8000316:	4b0d      	ldr	r3, [pc, #52]	; (800034c <main+0xe0>)
  8000318:	681b      	ldr	r3, [r3, #0]
- 800031a:	2b00      	cmp	r3, #0
- 800031c:	dcc7      	bgt.n	80002ae <main+0x42>
+ 800031a:	2b01      	cmp	r3, #1
+ 800031c:	d1c7      	bne.n	80002ae <main+0x42>
 	  {
 		  setTimer2(250);
  800031e:	20fa      	movs	r0, #250	; 0xfa
@@ -420,13 +420,13 @@ int main(void)
 			  index_led = 0;
  8000336:	2300      	movs	r3, #0
  8000338:	603b      	str	r3, [r7, #0]
-	  if(timer0_counter <= 0)
+	  if(timer0_flag == 1)
  800033a:	e7b8      	b.n	80002ae <main+0x42>
  800033c:	20000054 	.word	0x20000054
- 8000340:	2000002c 	.word	0x2000002c
+ 8000340:	20000030 	.word	0x20000030
  8000344:	40010800 	.word	0x40010800
- 8000348:	20000034 	.word	0x20000034
- 800034c:	2000003c 	.word	0x2000003c
+ 8000348:	20000038 	.word	0x20000038
+ 800034c:	20000040 	.word	0x20000040
 
 08000350 <SystemClock_Config>:
 /**

@@ -665,11 +665,11 @@ int main(void)
  8000550:	60fb      	str	r3, [r7, #12]
   while (1)
   {
-	  if(timer0_counter <= 0)
+	  if(timer0_flag == 1)
  8000552:	4b31      	ldr	r3, [pc, #196]	; (8000618 <main+0x124>)
  8000554:	681b      	ldr	r3, [r3, #0]
- 8000556:	2b00      	cmp	r3, #0
- 8000558:	dc07      	bgt.n	800056a <main+0x76>
+ 8000556:	2b01      	cmp	r3, #1
+ 8000558:	d107      	bne.n	800056a <main+0x76>
 	  {
 		  setTimer0(2000);
  800055a:	f44f 60fa 	mov.w	r0, #2000	; 0x7d0
@@ -679,11 +679,11 @@ int main(void)
  8000564:	482d      	ldr	r0, [pc, #180]	; (800061c <main+0x128>)
  8000566:	f000 ff95 	bl	8001494 <HAL_GPIO_TogglePin>
 	  }
-	  if(timer1_counter <= 0)
+	  if(timer1_flag == 1)
  800056a:	4b2d      	ldr	r3, [pc, #180]	; (8000620 <main+0x12c>)
  800056c:	681b      	ldr	r3, [r3, #0]
- 800056e:	2b00      	cmp	r3, #0
- 8000570:	dc23      	bgt.n	80005ba <main+0xc6>
+ 800056e:	2b01      	cmp	r3, #1
+ 8000570:	d123      	bne.n	80005ba <main+0xc6>
 	  {
 		  setTimer1(1000);
  8000572:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
@@ -736,11 +736,11 @@ int main(void)
  80005b4:	69b8      	ldr	r0, [r7, #24]
  80005b6:	f000 fac7 	bl	8000b48 <updateClockBuffer>
 	  }
-	  if(timer2_counter <= 0)
+	  if(timer2_flag == 1)
  80005ba:	4b1a      	ldr	r3, [pc, #104]	; (8000624 <main+0x130>)
  80005bc:	681b      	ldr	r3, [r3, #0]
- 80005be:	2b00      	cmp	r3, #0
- 80005c0:	dc0d      	bgt.n	80005de <main+0xea>
+ 80005be:	2b01      	cmp	r3, #1
+ 80005c0:	d10d      	bne.n	80005de <main+0xea>
 	  {
 		  setTimer2(250);
  80005c2:	20fa      	movs	r0, #250	; 0xfa
@@ -761,11 +761,11 @@ int main(void)
  80005dc:	60fb      	str	r3, [r7, #12]
 		  }
 	  }
-	  if(timer3_counter <= 0)
+	  if(timer3_flag == 1)
  80005de:	4b12      	ldr	r3, [pc, #72]	; (8000628 <main+0x134>)
  80005e0:	681b      	ldr	r3, [r3, #0]
- 80005e2:	2b00      	cmp	r3, #0
- 80005e4:	dcb5      	bgt.n	8000552 <main+0x5e>
+ 80005e2:	2b01      	cmp	r3, #1
+ 80005e4:	d1b5      	bne.n	8000552 <main+0x5e>
 	  {
 		  setTimer3(100);
  80005e6:	2064      	movs	r0, #100	; 0x64
@@ -790,15 +790,15 @@ int main(void)
  8000606:	463b      	mov	r3, r7
  8000608:	469c      	mov	ip, r3
  800060a:	f000 f80f 	bl	800062c <shift_matrix_buffer.6000>
-	  if(timer0_counter <= 0)
+	  if(timer0_flag == 1)
  800060e:	e7a0      	b.n	8000552 <main+0x5e>
  8000610:	080024a8 	.word	0x080024a8
  8000614:	2000005c 	.word	0x2000005c
- 8000618:	2000002c 	.word	0x2000002c
+ 8000618:	20000030 	.word	0x20000030
  800061c:	40010800 	.word	0x40010800
- 8000620:	20000034 	.word	0x20000034
- 8000624:	2000003c 	.word	0x2000003c
- 8000628:	20000044 	.word	0x20000044
+ 8000620:	20000038 	.word	0x20000038
+ 8000624:	20000040 	.word	0x20000040
+ 8000628:	20000048 	.word	0x20000048
 
 0800062c <shift_matrix_buffer.6000>:
 	{

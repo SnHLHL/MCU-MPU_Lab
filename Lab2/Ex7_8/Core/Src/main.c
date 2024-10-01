@@ -163,12 +163,12 @@ int main(void)
   int index_led = 0;
   while (1)
   {
-	  if(timer0_counter <= 0)
+	  if(timer0_flag == 1)
 	  {
 		  setTimer0(2000);
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 	  }
-	  if(timer1_counter <= 0)
+	  if(timer1_flag == 1)
 	  {
 		  setTimer1(1000);
 		  second++;
@@ -189,7 +189,7 @@ int main(void)
 		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		  updateClockBuffer(hour, minute);
 	  }
-	  if(timer2_counter <= 0)
+	  if(timer2_flag == 1)
 	  {
 		  setTimer2(250);
 		  update7SEG(index_led++);
