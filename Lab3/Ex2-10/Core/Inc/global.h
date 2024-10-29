@@ -16,6 +16,11 @@
 #include "fsm_manual.h"
 
 extern int status;
+extern int blink_status;
+
+extern int preTimeRed;
+extern int preTimeGreen;
+extern int preTimeAmber;
 
 extern int timeRED;
 extern int timeGREEN;
@@ -40,5 +45,8 @@ extern int defaultTimeAmber;
 #define MAN_MODE3 12
 #define MAN_MODE4 13
 
+#define SET_MODE1 14
+#define SET_MODE2 15
+#define SET_MODE3 16
 
 #endif /* INC_GLOBAL_H_ */

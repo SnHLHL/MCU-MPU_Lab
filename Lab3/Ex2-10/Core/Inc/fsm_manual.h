@@ -15,7 +15,6 @@
 #include "traffic.h"
 #include "led_display.h"
 
-
 void fsm_manual_run();
 
 #endif /* INC_FSM_MANUAL_H_ */

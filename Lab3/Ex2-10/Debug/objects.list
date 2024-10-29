@@ -1,5 +1,6 @@
 "./Core/Src/fsm_automatic.o"
 "./Core/Src/fsm_manual.o"
+"./Core/Src/fsm_setting.o"
 "./Core/Src/global.o"
 "./Core/Src/input_processing.o"
 "./Core/Src/input_reading.o"

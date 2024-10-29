@@ -10,18 +10,16 @@
 #include "input_processing.h"
 #include "global.h"
 
-// We aim to work with more than one button
-#define NO_OF_BUTTONS 3 // Updated to handle 3 buttons
-
 // Timer interrupt duration is 10ms, so to pass 1 second, we need to jump to the interrupt service routine 100 times
 #define DURATION_FOR_AUTO_INCREASING 	100
 #define BUTTON_IS_PRESSED 				GPIO_PIN_RESET
 #define BUTTON_IS_RELEASED 				GPIO_PIN_SET
 
-// The buffer that stores the final result after debouncing
+// The buffers that store the final result after debouncing
 static GPIO_PinState buttonBuffer[NO_OF_BUTTONS];
+static GPIO_PinState previousButtonBuffer[NO_OF_BUTTONS];
 
-// We define two buffers for debouncing
+// We define three buffers for debouncing
 static GPIO_PinState debounceButtonBuffer1[NO_OF_BUTTONS];
 static GPIO_PinState debounceButtonBuffer2[NO_OF_BUTTONS];
 
@@ -29,8 +27,10 @@ static GPIO_PinState debounceButtonBuffer2[NO_OF_BUTTONS];
 static uint8_t flagForButtonPress1s[NO_OF_BUTTONS];
 static uint8_t flagForButtonPressShort[NO_OF_BUTTONS];
 
+
 // Counter for automatically detecting when a button is pressed more than 1 second
 static uint16_t counterForButtonPress1s[NO_OF_BUTTONS];
+static uint16_t counterForLongPressInterval[NO_OF_BUTTONS];
 
 void button_reading(void) {
     for (int i = 0; i < NO_OF_BUTTONS; i++) {
@@ -62,21 +62,33 @@ void button_reading(void) {
                         // Flag is turned on when 1 second has passed since the button was pressed
                         flagForButtonPress1s[i] = 1;
                         flagForButtonPressShort[i] = 0; // Reset short press flag
+                        counterForLongPressInterval[i] = 0;
                     }
                 } else {
                     // The button is pressed for less than 1 second
-                    flagForButtonPressShort[i] = 1;
-                    flagForButtonPress1s[i] = 0; // Reset long press flag
+                	counterForLongPressInterval[i]++;
+                	if (counterForLongPressInterval[i] >= 25) {
+						flagForButtonPressShort[i] = 0;
+						flagForButtonPress1s[i] = 1; // Reset long press flag
+						counterForLongPressInterval[i] = 0;
+                	}
                 }
-            } else { // Button is released
-                // Button has been released
-                if (counterForButtonPress1s[i] > 0 && counterForButtonPress1s[i] < DURATION_FOR_AUTO_INCREASING/2) {
-                    // If it was pressed for a short time
-                    flagForButtonPressShort[i] = 1;
-                }
-                counterForButtonPress1s[i] = 0;  // Reset the counter
-                flagForButtonPress1s[i] = 0;     // Reset the 1s press flag
             }
+
+            if (buttonBuffer[i] == BUTTON_IS_RELEASED && previousButtonBuffer[i] == BUTTON_IS_PRESSED) {
+				// Button has just been released
+				if (counterForButtonPress1s[i] > 0 && counterForButtonPress1s[i] < DURATION_FOR_AUTO_INCREASING) {
+					// It was a short press
+					flagForButtonPressShort[i] = 1;
+				}
+				// Reset counters and flags on release
+				counterForButtonPress1s[i] = 0;
+				counterForLongPressInterval[i] = 0;
+				flagForButtonPress1s[i] = 0;
+			}
+
+			// Store the current button state for the next iteration
+			previousButtonBuffer[i] = buttonBuffer[i];
         }
     }
 }

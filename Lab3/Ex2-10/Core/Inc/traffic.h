@@ -18,4 +18,6 @@ void setTrafficRed2();
 void setTrafficAmber2();
 void setTrafficGreen2();
 
+void setTrafficOff();
+
 #endif /* INC_TRAFFIC_H_ */

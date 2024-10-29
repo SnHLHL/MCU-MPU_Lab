@@ -27,6 +27,8 @@
 #include "fsm_automatic.h"
 #include "led_display.h"
 #include "fsm_manual.h"
+#include "fsm_setting.h"
+#include "timer.h"
 
 /* USER CODE END Includes */
 
@@ -107,6 +109,7 @@ int main(void)
     /* USER CODE END WHILE */
 	  fsm_automatic_run();
 	  fsm_manual_run();
+	  fsm_setting_run();
 	  scanLed();
 
     /* USER CODE BEGIN 3 */
@@ -245,6 +248,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if(htim->Instance == TIM2){
+		button_reading();
+		timerRun();
+	}
+}
 
 /* USER CODE END 4 */
 

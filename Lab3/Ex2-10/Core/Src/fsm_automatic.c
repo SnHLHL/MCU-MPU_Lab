@@ -14,6 +14,7 @@ void fsm_automatic_run(){
 		//-----INIT: the status is assigned AUTO_RED_GREEN-----//
 		//assign timeRED, timeGREEN, timeAMBER
 		//assign tmpRED, tmpAMBER, tmpGREEN
+		setTrafficOff();
 		status = AUTO_RED_GREEN;
 		setTimer1(defaultTimeGreen*1000); //Multiply by 1000 as we input with unit second
 		timeRED = defaultTimeRed;
@@ -44,12 +45,17 @@ void fsm_automatic_run(){
 			setTimer2(1000);
 		}
 		if(is_button_pressed_short(0) == 1){
-			setTimer1(250);
+			setTimer1(500);
 			status = MAN_MODE2;
+			setTimer4(5000);
 		}
 		if(is_button_pressed_1s(0) == 1){
 			setTimer1(250);
 			status = MAN_MODE2;
+		}
+		if(is_button_pressed_short(1) == 1){
+			setTimer1(1000);
+			status = SET_MODE1;
 		}
 		break;
 	case AUTO_RED_AMBER:
@@ -75,10 +81,15 @@ void fsm_automatic_run(){
 		if(is_button_pressed_short(0) == 1){
 			setTimer1(250);
 			status = MAN_MODE2;
+			setTimer4(5000);
 		}
 		if(is_button_pressed_1s(0) == 1){
 			setTimer1(250);
 			status = MAN_MODE2;
+		}
+		if(is_button_pressed_short(1) == 1){
+			setTimer1(1000);
+			status = SET_MODE1;
 		}
 		break;
 	case AUTO_GREEN_RED:
@@ -103,10 +114,15 @@ void fsm_automatic_run(){
 		if(is_button_pressed_short(0) == 1){
 			setTimer1(250);
 			status = MAN_MODE2;
+			setTimer4(5000);
 		}
 		else if(is_button_pressed_1s(0) == 1){
 			setTimer1(250);
 			status = MAN_MODE2;
+		}
+		if(is_button_pressed_short(1) == 1){
+			setTimer1(1000);
+			status = SET_MODE1;
 		}
 		break;
 	case AUTO_AMBER_RED:
@@ -132,6 +148,7 @@ void fsm_automatic_run(){
 		if(is_button_pressed_short(0) == 1){
 			setTimer1(250);
 			status = MAN_MODE2;
+			setTimer4(5000);
 		}
 		if(is_button_pressed_1s(0) == 1){
 			setTimer1(250);

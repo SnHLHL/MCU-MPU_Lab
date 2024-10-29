@@ -73,7 +73,7 @@ void scanLed(){
 				if(tmpAMBER != defaultTimeAmber) tmpAMBER = defaultTimeAmber;
 				if(tmpGREEN != defaultTimeGreen) tmpRED = defaultTimeGreen;
 			}
-			if(is_button_pressed_short(1) == 1 || is_button_pressed_1s(2) == 1){
+			if(is_button_pressed_1s(2) == 1){
 				if((defaultTimeRed - (defaultTimeGreen + defaultTimeAmber)) != 0){
 					if((defaultTimeRed - (defaultTimeGreen + defaultTimeAmber)) > 0){
 						defaultTimeAmber++;
